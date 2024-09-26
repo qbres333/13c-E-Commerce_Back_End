@@ -10,6 +10,7 @@ class Product extends Model {}
 Product.init(
   {
     // define columns Mod 13 Act 23
+    // from seed file
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -28,7 +29,7 @@ Product.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    // category_id; foreign key
+    // category_id; foreign key from category model
     category_id: {
       type: DataTypes.INTEGER,
       references: {

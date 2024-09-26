@@ -7,7 +7,7 @@ class Category extends Model {}
 Category.init(
   {
     // define columns
-    //id, category_name Mod 13 Act 23
+    //id, category_name from seed file; Mod 13 Act 23
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
