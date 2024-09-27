@@ -39,6 +39,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // create new product
+// new productTag is only created when a product is created
 router.post('/', (req, res) => {
   /* req.body should look like this...
     {
@@ -78,6 +79,8 @@ router.post('/', (req, res) => {
 });
 
 // update product
+/* starter code updates productTag list at the same time; if tag deleted, 
+productTag is removed if there are no products associated with the pairing */
 router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {

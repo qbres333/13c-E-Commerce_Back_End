@@ -7,7 +7,7 @@ class ProductTag extends Model {}
 ProductTag.init(
   {
     // define columns
-    // id, product_id, tag_id from seed file
+    // id, (product_id, tag_id from seed file)
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
