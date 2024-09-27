@@ -49,8 +49,12 @@ router.post('/', (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
   */  
+
 //  similar to category post route
-// make tagIds an array of tag IDs
+
+// make tagIds an array of tag IDs; tagData is the array in tag_seeds.js
+  const tagIds = tagData.map(tag => tag.id);
+
   Product.create({
     product_name: req.body.product_name,
     price: req.body.price,
