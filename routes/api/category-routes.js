@@ -78,7 +78,7 @@ router.delete('/:id', async (req, res) => {
   try {
     const category_data = await Category.destroy({
       where: {
-        is: req.params.id
+        id: req.params.id
       }
     });
     // return an error if id not found

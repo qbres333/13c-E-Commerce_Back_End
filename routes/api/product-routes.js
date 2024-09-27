@@ -47,12 +47,15 @@ router.post('/', (req, res) => {
       stock: 3,
       tagIds: [1, 2, 3, 4]
     }
-  */
-  
-  const { product_name, price, stock } = req.body;
-  
-
-  Product.create(req.body)
+  */  
+//  similar to category post route
+// make tagIds an array of tag IDs
+  Product.create({
+    product_name: req.body.product_name,
+    price: req.body.price,
+    stock: req.body.stock,
+    tagIds,
+  })
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
       if (req.body.tagIds.length) {
