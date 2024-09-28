@@ -5,7 +5,6 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // from Mod 13 Act 23
 
-// get all products
 router.get("/", async (req, res) => {
   // find all products
   // be sure to include its associated Category and Tag data
@@ -19,12 +18,14 @@ router.get("/", async (req, res) => {
   }
 });
 
-// get one product
 router.get("/:id", async (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
   try {
-    const productData = await Product.findByPk(req.params.id, {
+    const productData = await Product.findOne({
+      where: {
+        id: req.params.id,
+      },
       include: [{ model: Category }, { model: Tag }],
     });
 
@@ -33,6 +34,8 @@ router.get("/:id", async (req, res) => {
       res.status(404).json({ message: "No product found with that id!" });
       return;
     }
+    // if found, show data
+    res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -50,11 +53,14 @@ router.post("/", (req, res) => {
     }
   */
 
-  //  similar to category post route
+  /* make tagIds an array of tag IDs; tagData is the array in tag_seeds.js (data in Tag model) */
+  // const tagIds = Tag.map((tag) => tag.id); // .map does not work with Tag model
+  // find all tags, which should be an array
+  
+  // map the tags and set value to tadgIds
+  
 
-  // make tagIds an array of tag IDs; tagData is the array in tag_seeds.js
-  const tagIds = tagData.map((tag) => tag.id);
-
+  //  similar to category post route .create method
   Product.create({
     product_name: req.body.product_name,
     price: req.body.price,
@@ -88,11 +94,19 @@ productTag is removed if there are no products associated with the pairing
 // from Mod 13 Act 19 */
 router.put("/:id", (req, res) => {
   // update product data
+ 
   Product.update(req.body, {
     where: {
       id: req.params.id,
     },
   })
+  // this .then added to determine how many records were updated
+    .then((productData) => {
+      if (productData[0] === 0) {
+        res.status(404).json({ message: "No product found with that id!" });
+        return;
+      }
+    })
     .then((product) => {
       if (req.body.tagIds && req.body.tagIds.length) {
         ProductTag.findAll({
