@@ -1,6 +1,6 @@
 const express = require('express');
 const routes = require('./routes');
-// import sequelize connection Mod 6 Act 1
+// import sequelize connection Mod 13 Act 1
 const sequelize = require('./config/connection');
 
 const app = express();

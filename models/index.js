@@ -4,7 +4,7 @@ const Category = require('./Category');
 const Tag = require('./Tag');
 const ProductTag = require('./ProductTag');
 
-// Mod 13 Act 23
+// from Mod 13 Act 23
 
 // Products belongsTo Category
 // establishes 1-to-1 relationship
@@ -18,8 +18,9 @@ Category.hasMany(Product, {
 });
 
 // Products belongToMany Tags (through ProductTag)
+// from sequelize documentation
 Product.belongsToMany(Tag, {
-  through: ProductTag,
+  through: ProductTag, //join table
   foreignKey: "product_id",
   otherKey: "tag_id",
 });
@@ -28,7 +29,7 @@ Product.belongsToMany(Tag, {
 // from sequelize documentation
 // switch the foreign and other keys (change if needed after testing)
 Tag.belongsToMany(Product, {
-  through: ProductTag,
+  through: ProductTag, //join table
   foreignKey: "tag_id",
   otherKey: "product_id",
 });
