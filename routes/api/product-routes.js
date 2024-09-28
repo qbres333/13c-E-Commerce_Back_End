@@ -84,7 +84,8 @@ router.post("/", (req, res) => {
 
 // update product
 /* starter code updates productTag list at the same time; if tag deleted, 
-productTag is removed if there are no products associated with the pairing */
+productTag is removed if there are no products associated with the pairing 
+// from Mod 13 Act 19 */
 router.put("/:id", (req, res) => {
   // update product data
   Product.update(req.body, {
