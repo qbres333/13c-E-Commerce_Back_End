@@ -11,6 +11,9 @@ https://sequelize.org/docs/v7/associations/belongs-to-many/
 Sequelize Querying:
 https://sequelize.org/docs/v7/category/querying/
 
+PUT requests in Sequelize:
+https://dev.to/coscoaj1/how-to-complete-a-put-request-in-sequelize-c54
+
 Sequelize Validations:
 https://sequelize.org/docs/v6/core-concepts/validations-and-constraints/
 

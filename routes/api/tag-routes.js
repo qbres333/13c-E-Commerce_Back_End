@@ -54,26 +54,24 @@ router.post("/", async (req, res) => {
   }
 });
 
-// from Mod 13 Act 19, documentation
+// from Mod 13 Act 19, dev.to documentation
 router.put("/:id", async (req, res) => {
   // update a tag's name by its `id` value
   try {
+    // first find the tag
     // .update returns an array with the number of affected objects
-    const updateTag = await Tag.update(
-      // {tag_name: 'blue'}, //property to update; 
-      req.body,
-      {
+    const updateTag = await Tag.update(req.body, {
       where: {
         id: req.params.id,
       },
     });
-    // test
-    console.log(req.params.id); //returns id # 3
-    // return an error if value in the array is 0
+
+    // return an error if value of first element is 0
     if (updateTag[0] === 0) {
       res.status(404).json({ message: "No tag found with that id!" });
       return;
     }
+
     res.status(200).json(updateTag);
   } catch (err) {
     res.status(500).json(err);
