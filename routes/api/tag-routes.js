@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
 
-
 // The `/api/tags` endpoint
 
 // similar to category_routes file
@@ -35,6 +34,7 @@ router.get("/:id", async (req, res) => {
       res.status(404).json({ message: "No tag found with that id!" });
       return;
     }
+    // show data if found
     res.status(200).json(tagData);
   } catch (err) {
     res.status(500).json(err);
@@ -65,7 +65,6 @@ router.put("/:id", async (req, res) => {
         id: req.params.id,
       },
     });
-
     // return an error if value of first element is 0
     if (updateTag[0] === 0) {
       res.status(404).json({ message: "No tag found with that id!" });
@@ -91,6 +90,7 @@ router.delete("/:id", async (req, res) => {
       res.status(404).json({ message: "No tag found with that id!" });
       return;
     }
+    // show the deleted tag
     res.status(200).json(tagData);
   } catch (err) {
     res.status(500).json(err);
