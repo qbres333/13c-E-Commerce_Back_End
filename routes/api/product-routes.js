@@ -139,7 +139,7 @@ router.put("/:id", (req, res) => {
         });
       }
 
-      return res.json(product);
+      return res.json(product); //no body returned but product properties get updated
     })
     .catch((err) => {
       // console.log(err);
@@ -147,19 +147,30 @@ router.put("/:id", (req, res) => {
     });
 });
 
+
 router.delete("/:id", async (req, res) => {
   // delete one product by its `id` value
   try {
+    // related productTags need to be deleted when/before the product is deleted
+    // retrieve/delete all productTags for the product (Product id = ProductTag product_id)
+    const getProductTags = await ProductTag.destroy({
+      where: {
+        product_id: req.params.id,
+      }
+    });
+
     const productData = await Product.destroy({
       where: {
         id: req.params.id,
       },
     });
-    // return an error if id not found
-    if (!productData) {
-      res.status(404).json({ message: "No product found with that id!" });
+    // return an error if number returned is not 1 (successful deletion of one product)
+    if (productData !== 1) {
+      //added return so that no more code is executed after the error
+      return res.status(404).json({ message: "No product found with that id!" });
     }
-    res.status(200).json(category_data);
+
+    res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
   }

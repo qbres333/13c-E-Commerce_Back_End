@@ -27,7 +27,6 @@ Product.belongsToMany(Tag, {
 
 // Tags belongToMany Products (through ProductTag)
 // from sequelize documentation
-// switch the foreign and other keys (change if needed after testing)
 Tag.belongsToMany(Product, {
   through: ProductTag, //join table
   foreignKey: "tag_id",
