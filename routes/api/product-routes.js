@@ -41,6 +41,15 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+  // find all tags, which should be an array
+  // map the tags and set value to tadgIds
+async function getTags() {
+  const allTags = await Tag.findAll();
+  const tagIds = allTags.map((tag) => tag = tag.id)
+  return tagIds;
+}
+
+
 // create new product
 // new productTag is only created when a product is created
 router.post("/", (req, res) => {
@@ -52,13 +61,8 @@ router.post("/", (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
   */
-
-  /* make tagIds an array of tag IDs; tagData is the array in tag_seeds.js (data in Tag model) */
-  // const tagIds = Tag.map((tag) => tag.id); // .map does not work with Tag model
-  // find all tags, which should be an array
-  
-  // map the tags and set value to tadgIds
-  
+  // call getTags function to get an array of ids
+  const tagIds = getTags();
 
   //  similar to category post route .create method
   Product.create({
