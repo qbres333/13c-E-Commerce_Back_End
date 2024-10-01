@@ -34,7 +34,7 @@ router.get("/:id", async (req, res) => {
       res.status(404).json({ message: "No product found with that id!" });
       return;
     }
-    // if found, show data
+    // if found, show product
     res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
@@ -169,7 +169,7 @@ router.delete("/:id", async (req, res) => {
       //added return so that no more code is executed after the error
       return res.status(404).json({ message: "No product found with that id!" });
     }
-
+    //show number of products deleted (1)
     res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);

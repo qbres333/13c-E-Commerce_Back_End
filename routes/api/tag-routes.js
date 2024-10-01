@@ -34,7 +34,7 @@ router.get("/:id", async (req, res) => {
       res.status(404).json({ message: "No tag found with that id!" });
       return;
     }
-    // show data if found
+    // show tag if found
     res.status(200).json(tagData);
   } catch (err) {
     res.status(500).json(err);
@@ -90,7 +90,7 @@ router.delete("/:id", async (req, res) => {
       res.status(404).json({ message: "No tag found with that id!" });
       return;
     }
-    // show the deleted tag
+    // show the number of deleted tags (1)
     res.status(200).json(tagData);
   } catch (err) {
     res.status(500).json(err);
